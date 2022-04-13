@@ -3,18 +3,14 @@ package azurehelpers
 import (
 	"fmt"
 	"strings"
-	"time"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func dataSourceResourceId() *schema.Resource {
 	return &schema.Resource{
-		Read: dataSourceResourceIdRead,
-		Timeouts: &schema.ResourceTimeout{
-			Read: schema.DefaultTimeout(5 * time.Second),
-		},
-
+		Description: "Parses an Azure resource ID and returns the individual parts.",
+		Read:        dataSourceResourceIdRead,
 		Schema: map[string]*schema.Schema{
 			"resource_id": {
 				Type:        schema.TypeString,
